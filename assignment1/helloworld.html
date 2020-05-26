@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Choose what to do:</h1>
+
+<button type="button" id="move" onclick="move('crosscircle', 200, 0)">move!</button>
+
+<button onclick="circle.style.fill='none';">Click to remove color</button>
+
+<button onclick="circle.style.fill='yellow';">Click to add color</button>
+
+<button type="button" onclick="rotate('crosscircle', 'circle', 45)">rotate!</button>
+
+<svg id="crosscircle" width="250px" height="250px">
+  <circle cx="50" cy="125" r="45" fill="none" stroke="black" stroke-width="7.5" id="circle"></circle>
+  <line x1="5" y1="125" x2="95" y2="125" stroke="black" stroke-width="5" id="line1"></line>
+  <line x1="50" y1="80" x2="50" y2="170" stroke="black" stroke-width="5" id="line2"></line>
+</svg>
+
+<script>
+var pos = -1
+
+function move(idStr, xOffset, yOffset) {
+if (pos == 1) {
+  xOffset = -200;
+  pos = -1;
+} else {pos = 1;}
+
+var domElemnt = document.getElementById(idStr);
+    if (domElemnt) {
+        var transformAttr = ' translate(' + xOffset + ',' + yOffset + ')';
+        domElemnt.setAttribute('transform', transformAttr);
+    }
+}
+
+function flip(idStr, xOffset, yOffset) {
+var domElemnt = document.getElementById(idStr);
+    if (domElemnt) {
+        var transformAttr = ' translate(' + xOffset + ',' + yOffset + ')';
+        domElemnt.setAttribute('transform', transformAttr);
+    }
+}
+
+function rotate(idStrWhole, idStrCenter, degree) {
+var circle = document.getElementById(idStrCenter);
+var wholesvg = document.getElementById(idStrWhole);
+    if (wholesvg && circle) {
+        var x = circle.getAttribute("cx");
+        var y = circle.getAttribute("cy");
+        var transformAttr = 'rotate(' + degree + ',' + x + ',' + y + ')';
+        wholesvg.setAttribute('transform', transformAttr);
+    }
+}
+
+function color(idStr, xOffset, yOffset) {
+var domElemnt = document.getElementById(idStr);
+    if (domElemnt) {
+        var transformAttr = ' translate(' + xOffset + ',' + yOffset + ')';
+        domElemnt.setAttribute('transform', transformAttr);
+    }
+}
+</script>
+
+<head>
+<style>
+</style>
+</head>  
+</body>
+</html>
